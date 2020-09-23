@@ -3,11 +3,12 @@ import axios from "axios";
 
 function App() {
   const [songs, setSongs] = useState([]);
+  const [searchInput, setSearchInput] = useState("nickelback");
   useEffect(() => {
     async function fetchSongs() {
       try {
         const result = await axios.get(
-          "https://itunes.apple.com/search?term=beatles"
+          `https://itunes.apple.com/search?term=${searchInput}`
         );
         const songsArray = result.data.results;
         console.log(songsArray);
@@ -17,22 +18,14 @@ function App() {
       }
     }
     fetchSongs();
-
-    // axios
-    //   .get("https://itunes.apple.com/search?term=beatles")
-    //   .then(response => {
-    //     console.log(response);
-    //     console.log(response.data);
-    //     console.log(response.data.results);
-    //     setSongs(response.data.results);
-    //   })
-    //   .catch(err => console.log(err));
-  }, []);
+  }, [searchInput]);
+  console.log(searchInput);
 
   return (
     <div>
+      <input onChange={event => setSearchInput(event.target.value)} />
       {songs.map((song, index) => (
-        <div key={index}>{song.collectionName}</div>
+        <div key={index}>{song.trackName}</div>
       ))}
     </div>
   );
