@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [songs, setSongs] = useState([]);
@@ -23,7 +24,8 @@ function App() {
 
   return (
     <div>
-      <input onChange={event => setSearchInput(event.target.value)} />
+      <Navbar setSearchInput={setSearchInput} />
+      {/* <input onChange={event => setSearchInput(event.target.value)} /> */}
       {songs.map((song, index) => (
         <div key={index}>{song.trackName}</div>
       ))}
