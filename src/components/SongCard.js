@@ -11,10 +11,20 @@ import SimplePopover from "./SimplePopover";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345
+    maxWidth: 700,
+    margin: "4vw",
+    padding: "1vw"
   },
   media: {
-    height: 140
+    height: 200,
+    width: 200
+  },
+  mainCardContent: {
+    display: "flex"
+  },
+  cardAction: {
+    display: "flex",
+    justifyContent: "flex-end"
   }
 });
 
@@ -24,24 +34,26 @@ export default function SongCard({ song }) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={song.artworkUrl100}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {song.trackName}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {song.artistName}
-          </Typography>{" "}
-          <Typography variant="body2" color="textSecondary" component="p">
-            {song.collectionName}
-          </Typography>
-        </CardContent>
+        <div className={classes.mainCardContent}>
+          <CardMedia
+            className={classes.media}
+            image={song.artworkUrl100}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {song.trackName}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {song.artistName}
+            </Typography>{" "}
+            <Typography variant="body2" color="textSecondary" component="p">
+              {song.collectionName}
+            </Typography>
+          </CardContent>
+        </div>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.cardAction}>
         <SimplePopover song={song} />
       </CardActions>
     </Card>
